@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://k32qwlrjte4g"]
+
+[ext_resource type="Texture2D" uid="uid://bus7c6ow4y5tl" path="res://sprites/Tiles/tile_0130.png" id="1_vgwbh"]
+[ext_resource type="Texture2D" uid="uid://b6li35cstx0h4" path="res://sprites/Tiles/tile_0110.png" id="2_3eok6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmd5b"]
+size = Vector2(18, 21)
+
+[node name="Door" type="StaticBody2D"]
+
+[node name="Tile0130" type="Sprite2D" parent="."]
+texture_filter = 3
+texture = ExtResource("1_vgwbh")
+
+[node name="Tile0110" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(0, -16)
+texture = ExtResource("2_3eok6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_nmd5b")
+disabled = true

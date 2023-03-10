@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfyjmjulanoda"]
+
+[ext_resource type="Texture2D" uid="uid://d0pqg7tsrhvu7" path="res://Scenes/World/download.png" id="1_5sol4"]
+
+[node name="backround stuff" type="Node2D"]
+
+[node name="backround" type="Sprite2D" parent="."]
+position = Vector2(280, 164)
+scale = Vector2(1.86667, 1.95238)
+texture = ExtResource("1_5sol4")

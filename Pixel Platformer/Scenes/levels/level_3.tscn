@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2oj1mxlfig7m"]
+[gd_scene load_steps=14 format=3 uid="uid://c2oj1mxlfig7m"]
 
 [ext_resource type="PackedScene" uid="uid://cfyjmjulanoda" path="res://Scenes/Utilitys/backround_stuff.tscn" id="1_ckjvo"]
+[ext_resource type="Script" path="res://Scenes/levels/level_3.gd" id="1_tmjl0"]
 [ext_resource type="PackedScene" uid="uid://cklf0s5xxf1gm" path="res://Scenes/Player/Player.tscn" id="2_awrq2"]
 [ext_resource type="PackedScene" uid="uid://b7djn44v11eii" path="res://Scenes/blocks/Grass blocks/left_grass_block.tscn" id="3_cfae2"]
 [ext_resource type="PackedScene" uid="uid://k8141rbyg7x" path="res://Scenes/blocks/Grass blocks/middle_grass_block.tscn" id="4_kkrpn"]
@@ -10,9 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://rfhcpwwad1eg" path="res://sprites/Tiles/tile_0126.png" id="8_1bkc3"]
 [ext_resource type="Texture2D" uid="uid://dr0yq1h2tggg8" path="res://sprites/Tiles/tile_0127.png" id="9_yflte"]
 [ext_resource type="Texture2D" uid="uid://c5koyt1roxnex" path="res://sprites/Tiles/tile_0128.png" id="10_w2xld"]
-[ext_resource type="PackedScene" uid="uid://dxjrad7b7ku12" path="res://Scenes/Utilitys/coin.tscn" id="11_c6i71"]
+[ext_resource type="PackedScene" uid="uid://dgd1bnfqk87nh" path="res://Scenes/Utilitys/coin.tscn" id="11_c6i71"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cygt0"]
+size = Vector2(18, 21)
 
 [node name="Level 3" type="Node2D"]
+script = ExtResource("1_tmjl0")
 
 [node name="backround stuff" parent="." instance=ExtResource("1_ckjvo")]
 position = Vector2(-2, -1)
@@ -80,3 +85,13 @@ position = Vector2(119, 230)
 
 [node name="coin2" parent="." instance=ExtResource("11_c6i71")]
 position = Vector2(151, 230)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(223, 212.5)
+shape = SubResource("RectangleShape2D_cygt0")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

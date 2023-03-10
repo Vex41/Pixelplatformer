@@ -1,0 +1,195 @@
+[gd_scene load_steps=16 format=3 uid="uid://cklf0s5xxf1gm"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_10tio"]
+[ext_resource type="Texture2D" uid="uid://bye3vx45x7tyo" path="res://Scenes/Player/Green.png" id="1_olidp"]
+[ext_resource type="AudioStream" uid="uid://c4n4ermmdq4fr" path="res://Sound/Jump.wav" id="3_2frwy"]
+[ext_resource type="AudioStream" uid="uid://cwc7a724dd8gg" path="res://Sound/Land2.wav" id="4_2nrui"]
+[ext_resource type="AudioStream" uid="uid://cn2100xqrjl3o" path="res://Sound/Fallen off map.wav" id="5_jw5uo"]
+[ext_resource type="AudioStream" uid="uid://dxyovh5e382af" path="res://Retro Impact Punch 07.wav" id="6_a5kv1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6i4t"]
+radius = 9.0
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_3b2ed"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_5jkgc"]
+resource_name = "walk"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vohs7"]
+_data = {
+"RESET": SubResource("Animation_3b2ed"),
+"walk": SubResource("Animation_5jkgc")
+}
+
+[sub_resource type="Animation" id="Animation_ai0y5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o74ea"]
+resource_name = "fade in"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iny5w"]
+resource_name = "fade out"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5jd67"]
+_data = {
+"RESET": SubResource("Animation_ai0y5"),
+"fade in": SubResource("Animation_o74ea"),
+"fade out": SubResource("Animation_iny5w")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1b8q"]
+radius = 17.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_10tio")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+texture = ExtResource("1_olidp")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_m6i4t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vohs7")
+}
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2frwy")
+
+[node name="land" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_2nrui")
+volume_db = 1.0
+
+[node name="off map" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_jw5uo")
+
+[node name="death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_a5kv1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 22)
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.9
+
+[node name="Door" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="door" type="CollisionShape2D" parent="Door"]
+shape = SubResource("CapsuleShape2D_m6i4t")
+
+[node name="coin" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="coin" type="CollisionShape2D" parent="coin"]
+position = Vector2(1.90735e-06, -9.53674e-07)
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CapsuleShape2D_m6i4t")
+
+[node name="Enemy" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="enemy" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(1.90735e-06, -9.53674e-07)
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CapsuleShape2D_m6i4t")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -820.0
+offset_top = -706.0
+offset_right = 783.0
+offset_bottom = 755.0
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_5jd67")
+}
+
+[node name="Sleep" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sleep"]
+shape = SubResource("CircleShape2D_i1b8q")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="area_entered" from="Enemy" to="." method="_on_enemy_area_entered"]

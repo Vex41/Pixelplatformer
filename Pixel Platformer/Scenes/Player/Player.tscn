@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cklf0s5xxf1gm"]
+[gd_scene load_steps=15 format=3 uid="uid://cklf0s5xxf1gm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_10tio"]
 [ext_resource type="Texture2D" uid="uid://bye3vx45x7tyo" path="res://Scenes/Player/Green.png" id="1_olidp"]
@@ -102,6 +102,9 @@ _data = {
 "fade out": SubResource("Animation_iny5w")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1b8q"]
+radius = 17.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_10tio")
 
@@ -174,6 +177,13 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_5jd67")
 }
+
+[node name="Sleep" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sleep"]
+shape = SubResource("CircleShape2D_i1b8q")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

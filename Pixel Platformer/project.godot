@@ -84,3 +84,4 @@ reset={
 2d_physics/layer_2="Doors"
 2d_physics/layer_3="enemys"
 2d_physics/layer_4="coins"
+2d_physics/layer_5="Enemy sleeps"

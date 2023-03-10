@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=3 uid="uid://c2oj1mxlfig7m"]
+
+[ext_resource type="PackedScene" uid="uid://cfyjmjulanoda" path="res://Scenes/Utilitys/backround_stuff.tscn" id="1_ckjvo"]
+[ext_resource type="Script" path="res://Scenes/levels/level_3.gd" id="1_tmjl0"]
+[ext_resource type="PackedScene" uid="uid://cklf0s5xxf1gm" path="res://Scenes/Player/Player.tscn" id="2_awrq2"]
+[ext_resource type="PackedScene" uid="uid://b7djn44v11eii" path="res://Scenes/blocks/Grass blocks/left_grass_block.tscn" id="3_cfae2"]
+[ext_resource type="PackedScene" uid="uid://k8141rbyg7x" path="res://Scenes/blocks/Grass blocks/middle_grass_block.tscn" id="4_kkrpn"]
+[ext_resource type="PackedScene" uid="uid://4i4hgftjaich" path="res://Scenes/blocks/Grass blocks/right_grass_block.tscn" id="5_n0w4b"]
+[ext_resource type="PackedScene" uid="uid://k32qwlrjte4g" path="res://Scenes/Utilitys/door.tscn" id="6_o66r4"]
+[ext_resource type="PackedScene" uid="uid://bw8qqyi3eulhj" path="res://Scenes/enemys/fish.tscn" id="7_pfcft"]
+[ext_resource type="Texture2D" uid="uid://rfhcpwwad1eg" path="res://sprites/Tiles/tile_0126.png" id="8_1bkc3"]
+[ext_resource type="Texture2D" uid="uid://dr0yq1h2tggg8" path="res://sprites/Tiles/tile_0127.png" id="9_yflte"]
+[ext_resource type="Texture2D" uid="uid://c5koyt1roxnex" path="res://sprites/Tiles/tile_0128.png" id="10_w2xld"]
+[ext_resource type="PackedScene" uid="uid://dgd1bnfqk87nh" path="res://Scenes/Utilitys/coin.tscn" id="11_c6i71"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cygt0"]
+size = Vector2(18, 21)
+
+[node name="Level 3" type="Node2D"]
+script = ExtResource("1_tmjl0")
+
+[node name="backround stuff" parent="." instance=ExtResource("1_ckjvo")]
+position = Vector2(-2, -1)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(107, -43)
+
+[node name="Player" parent="Node2D" instance=ExtResource("2_awrq2")]
+position = Vector2(47, 241)
+
+[node name="LeftGrassBlock" parent="Node2D" instance=ExtResource("3_cfae2")]
+position = Vector2(32, 264)
+
+[node name="MiddleGrassBlock" parent="Node2D" instance=ExtResource("4_kkrpn")]
+position = Vector2(48, 264)
+
+[node name="RightGrassBlock" parent="Node2D" instance=ExtResource("5_n0w4b")]
+position = Vector2(64, 264)
+
+[node name="LeftGrassBlock2" parent="Node2D" instance=ExtResource("3_cfae2")]
+position = Vector2(120, 248)
+
+[node name="MiddleGrassBlock2" parent="Node2D" instance=ExtResource("4_kkrpn")]
+position = Vector2(136, 248)
+
+[node name="RightGrassBlock2" parent="Node2D" instance=ExtResource("5_n0w4b")]
+position = Vector2(152, 248)
+
+[node name="LeftGrassBlock3" parent="Node2D" instance=ExtResource("3_cfae2")]
+position = Vector2(208, 232)
+
+[node name="MiddleGrassBlock3" parent="Node2D" instance=ExtResource("4_kkrpn")]
+position = Vector2(224, 232)
+
+[node name="RightGrassBlock3" parent="Node2D" instance=ExtResource("5_n0w4b")]
+position = Vector2(240, 232)
+
+[node name="Door" parent="Node2D" instance=ExtResource("6_o66r4")]
+position = Vector2(223, 214)
+
+[node name="Fish" parent="Node2D" instance=ExtResource("7_pfcft")]
+position = Vector2(136, 231)
+
+[node name="Tile0126" type="Sprite2D" parent="Node2D"]
+texture_filter = 3
+position = Vector2(67, 246)
+texture = ExtResource("8_1bkc3")
+
+[node name="Tile0127" type="Sprite2D" parent="Node2D"]
+texture_filter = 3
+position = Vector2(241, 214)
+texture = ExtResource("9_yflte")
+
+[node name="Tile0128" type="Sprite2D" parent="Node2D"]
+texture_filter = 3
+position = Vector2(30, 246)
+texture = ExtResource("10_w2xld")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D"]
+offset_left = 89.0
+offset_top = 171.0
+offset_right = 263.0
+offset_bottom = 214.0
+text = "Avoid enemys!"
+
+[node name="coin" parent="Node2D" instance=ExtResource("11_c6i71")]
+position = Vector2(119, 230)
+
+[node name="coin2" parent="Node2D" instance=ExtResource("11_c6i71")]
+position = Vector2(151, 230)
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+position = Vector2(223, 212.5)
+shape = SubResource("RectangleShape2D_cygt0")
+
+[connection signal="area_entered" from="Node2D/Area2D" to="." method="_on_area_2d_area_entered"]
