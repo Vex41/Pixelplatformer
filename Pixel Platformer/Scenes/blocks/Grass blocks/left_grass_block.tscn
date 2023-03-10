@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7djn44v11eii"]
+
+[ext_resource type="Texture2D" uid="uid://cmxc6aa3s7r7o" path="res://sprites/Tiles/tile_0001.png" id="1_q12m2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dw55p"]
+size = Vector2(18, 18)
+
+[node name="LeftGrassBlock" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+texture = ExtResource("1_q12m2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dw55p")

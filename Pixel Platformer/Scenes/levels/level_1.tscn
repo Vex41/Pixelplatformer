@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnb6b4c6ucccp"]
+
+[ext_resource type="Script" path="res://Scenes/levels/level1.gd" id="1_6k2aq"]
+[ext_resource type="PackedScene" uid="uid://b7djn44v11eii" path="res://Scenes/blocks/Grass blocks/left_grass_block.tscn" id="1_o6r12"]
+[ext_resource type="PackedScene" uid="uid://k8141rbyg7x" path="res://Scenes/blocks/Grass blocks/middle_grass_block.tscn" id="2_3m08n"]
+[ext_resource type="PackedScene" uid="uid://cfyjmjulanoda" path="res://Scenes/Utilitys/backround_stuff.tscn" id="2_s16ra"]
+[ext_resource type="PackedScene" uid="uid://4i4hgftjaich" path="res://Scenes/blocks/Grass blocks/right_grass_block.tscn" id="3_xlgm7"]
+[ext_resource type="PackedScene" uid="uid://k32qwlrjte4g" path="res://Scenes/Utilitys/door.tscn" id="4_hkq8i"]
+[ext_resource type="PackedScene" uid="uid://cklf0s5xxf1gm" path="res://Scenes/Player/Player.tscn" id="5_p1s7m"]
+[ext_resource type="Texture2D" uid="uid://boaocbyl8c3r6" path="res://sprites/Tiles/tile_0124.png" id="7_ojn7p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cr86w"]
+size = Vector2(20, 22)
+
+[node name="level1" type="Node2D"]
+script = ExtResource("1_6k2aq")
+
+[node name="backround stuff" parent="." instance=ExtResource("2_s16ra")]
+
+[node name="LeftGrassBlock" parent="." instance=ExtResource("1_o6r12")]
+position = Vector2(224, 200)
+
+[node name="MiddleGrassBlock" parent="." instance=ExtResource("2_3m08n")]
+position = Vector2(240, 200)
+
+[node name="RightGrassBlock" parent="." instance=ExtResource("3_xlgm7")]
+position = Vector2(256, 200)
+
+[node name="LeftGrassBlock2" parent="." instance=ExtResource("1_o6r12")]
+position = Vector2(312, 200)
+
+[node name="MiddleGrassBlock2" parent="." instance=ExtResource("2_3m08n")]
+position = Vector2(328, 200)
+
+[node name="RightGrassBlock2" parent="." instance=ExtResource("3_xlgm7")]
+position = Vector2(344, 200)
+
+[node name="Door" parent="." instance=ExtResource("4_hkq8i")]
+position = Vector2(327, 182)
+
+[node name="Tile0124" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(309, 182)
+texture = ExtResource("7_ojn7p")
+
+[node name="Player" parent="." instance=ExtResource("5_p1s7m")]
+position = Vector2(238, 179)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(327, 180)
+shape = SubResource("RectangleShape2D_cr86w")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 94.0
+offset_top = 57.0
+offset_right = 416.0
+offset_bottom = 96.0
+text = "Use the Arrow keys to move and jump."
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
