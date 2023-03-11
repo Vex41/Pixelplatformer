@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Texture2D" uid="uid://hrkkc8vydas4" path="res://sprites/Tiles/tile_0067.png" id="1_01vts"]
+[ext_resource type="Script" path="res://Scenes/Utilitys/diamond.gd" id="1_ab577"]
+[ext_resource type="AudioStream" uid="uid://dbf37w2saavef" path="res://Sound/Retro PickUp Coin 07.wav" id="3_w6c1s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_43ikn"]
+radius = 5.09902
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oxrpr"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_6j44y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1.5)]
+}
+
+[sub_resource type="Animation" id="Animation_55k55"]
+resource_name = "Shine"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.6, 0.6),
+"update": 0,
+"values": [Vector2(0, 1.5), Vector2(0, -1.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6y40k"]
+_data = {
+"RESET": SubResource("Animation_6j44y"),
+"Shine": SubResource("Animation_55k55")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ftgjh"]
+particle_flag_disable_z = true
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+angular_velocity_min = 1.0
+angular_velocity_max = 5.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.5
+
+[node name="Diamond" type="StaticBody2D"]
+script = ExtResource("1_ab577")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.921011)
+texture_filter = 3
+position = Vector2(0, -1.5)
+texture = ExtResource("1_01vts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_43ikn")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_oxrpr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6y40k")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.556863)
+process_material = SubResource("ParticleProcessMaterial_ftgjh")
+speed_scale = 2.0
+explosiveness = 0.71
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_w6c1s")
+volume_db = 10.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
