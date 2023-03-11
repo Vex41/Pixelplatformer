@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://comlgfw36oakm"]
+[gd_scene load_steps=3 format=3 uid="uid://comlgfw36oakm"]
 
-[ext_resource type="PackedScene" uid="uid://cnb6b4c6ucccp" path="res://Scenes/levels/level_1.tscn" id="2_qktfs"]
+[ext_resource type="PackedScene" uid="uid://bhe4d0w0mi3or" path="res://Scenes/Utilitys/scenes/fade.tscn" id="2_gg131"]
+[ext_resource type="PackedScene" uid="uid://b6g2rmp6chx42" path="res://Scenes/levels/level_1.tscn" id="2_qktfs"]
 
 [node name="World" type="Node2D"]
 
 [node name="level1" parent="." instance=ExtResource("2_qktfs")]
+
+[node name="FADE" parent="." instance=ExtResource("2_gg131")]

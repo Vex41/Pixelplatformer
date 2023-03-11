@@ -15,6 +15,11 @@ run/main_scene="res://Scenes/World/world.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.png"
 
+[autoload]
+
+Backroundmusic="*res://Scenes/Utilitys/scenes/backroundmusic.tscn"
+Global="*res://Scenes/Utilitys/code/global.gd"
+
 [display]
 
 window/size/viewport_width=500
@@ -85,3 +90,8 @@ reset={
 2d_physics/layer_3="enemys"
 2d_physics/layer_4="coins"
 2d_physics/layer_5="Enemy sleeps"
+2d_physics/layer_6="Diamond"
+2d_physics/layer_7="Key"
+2d_physics/layer_8="unlock"
+2d_physics/layer_9="Spring"
+2d_physics/layer_10="Ladders"

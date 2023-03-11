@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://24spijesl5ey"]
-
-[ext_resource type="Script" path="res://Scenes/Utilitys/score.gd" id="1_c1is5"]
-
-[node name="score" type="RichTextLabel"]
-offset_right = 95.0
-offset_bottom = 40.0
-script = ExtResource("1_c1is5")

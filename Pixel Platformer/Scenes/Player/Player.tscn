@@ -1,10 +1,32 @@
-[gd_scene load_steps=15 format=3 uid="uid://cklf0s5xxf1gm"]
+[gd_scene load_steps=23 format=3 uid="uid://c1odubp1epwy2"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_10tio"]
 [ext_resource type="Texture2D" uid="uid://bye3vx45x7tyo" path="res://Scenes/Player/Green.png" id="1_olidp"]
 [ext_resource type="AudioStream" uid="uid://c4n4ermmdq4fr" path="res://Sound/Jump.wav" id="3_2frwy"]
 [ext_resource type="AudioStream" uid="uid://cwc7a724dd8gg" path="res://Sound/Land2.wav" id="4_2nrui"]
 [ext_resource type="AudioStream" uid="uid://cn2100xqrjl3o" path="res://Sound/Fallen off map.wav" id="5_jw5uo"]
+[ext_resource type="AudioStream" uid="uid://dxyovh5e382af" path="res://Sound/Retro Impact Punch 07.wav" id="6_k53ja"]
+
+[sub_resource type="Curve" id="Curve_8w422"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0636363), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rrqe1"]
+curve = SubResource("Curve_8w422")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vaw27"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_rrqe1")
+color = Color(0, 0.752941, 0.537255, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6i4t"]
 radius = 9.0
@@ -12,6 +34,22 @@ height = 24.0
 
 [sub_resource type="Animation" id="Animation_3b2ed"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6ub35"]
+resource_name = "death"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -45,7 +83,35 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vohs7"]
 _data = {
 "RESET": SubResource("Animation_3b2ed"),
+"death": SubResource("Animation_6ub35"),
 "walk": SubResource("Animation_5jkgc")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1b8q"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ghg2m"]
+radius = 17.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ypk28"]
+radius = 2.0
+height = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3w6s"]
+
+[sub_resource type="Animation" id="Animation_ai0y5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_o74ea"]
@@ -62,21 +128,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ai0y5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_iny5w"]
@@ -102,18 +153,22 @@ _data = {
 "fade out": SubResource("Animation_iny5w")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i1b8q"]
-radius = 17.0
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_10tio")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 3
+texture_filter = 1
 texture = ExtResource("1_olidp")
 hframes = 2
 
+[node name="explosion" type="GPUParticles2D" parent="."]
+visible = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_vaw27")
+explosiveness = 1.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_m6i4t")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -131,38 +186,89 @@ volume_db = 1.0
 [node name="off map" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_jw5uo")
 
+[node name="death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_k53ja")
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, 22)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Door" type="Area2D" parent="Node2D"]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="door" type="CollisionShape2D" parent="Node2D/Door"]
+shape = SubResource("CapsuleShape2D_m6i4t")
+
+[node name="coin" type="Area2D" parent="Node2D"]
+visible = false
+collision_layer = 8
+collision_mask = 8
+
+[node name="coin" type="CollisionShape2D" parent="Node2D/coin"]
+position = Vector2(1.90735e-06, -9.53674e-07)
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CapsuleShape2D_m6i4t")
+
+[node name="Enemy" type="Area2D" parent="Node2D"]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="enemy" type="CollisionShape2D" parent="Node2D/Enemy"]
+position = Vector2(1.90735e-06, -9.53674e-07)
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CapsuleShape2D_m6i4t")
+
+[node name="Sleep" type="Area2D" parent="Node2D"]
+visible = false
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sleep"]
+shape = SubResource("CircleShape2D_i1b8q")
+
+[node name="Diamond" type="Area2D" parent="Node2D"]
+visible = false
+collision_layer = 32
+collision_mask = 32
+
+[node name="diamond" type="CollisionShape2D" parent="Node2D/Diamond"]
+position = Vector2(1.90735e-06, -9.53674e-07)
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CapsuleShape2D_m6i4t")
+
+[node name="Key" type="Area2D" parent="Node2D"]
+visible = false
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Key"]
+shape = SubResource("CircleShape2D_ghg2m")
+
+[node name="Spring" type="Area2D" parent="Node2D"]
+visible = false
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Spring"]
+position = Vector2(0, 10)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ypk28")
+
+[node name="ladder" type="Area2D" parent="Node2D"]
+collision_layer = 512
+collision_mask = 512
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/ladder"]
+shape = SubResource("RectangleShape2D_s3w6s")
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 0.9
-
-[node name="Door" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-
-[node name="door" type="CollisionShape2D" parent="Door"]
-shape = SubResource("CapsuleShape2D_m6i4t")
-
-[node name="coin" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 8
-
-[node name="coin" type="CollisionShape2D" parent="coin"]
-position = Vector2(1.90735e-06, -9.53674e-07)
-scale = Vector2(0.8, 0.8)
-shape = SubResource("CapsuleShape2D_m6i4t")
-
-[node name="Enemy" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
-
-[node name="enemy" type="CollisionShape2D" parent="Enemy"]
-position = Vector2(1.90735e-06, -9.53674e-07)
-scale = Vector2(0.8, 0.8)
-shape = SubResource("CapsuleShape2D_m6i4t")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -178,14 +284,20 @@ libraries = {
 "": SubResource("AnimationLibrary_5jd67")
 }
 
-[node name="Sleep" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 16
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sleep"]
-shape = SubResource("CircleShape2D_i1b8q")
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+texture_filter = 3
+offset_left = -5.0
+offset_top = -44.0
+offset_right = 66.0
+offset_bottom = -17.0
+text = "1"
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Node2D/coin" to="." method="_on_coin_area_entered"]
+[connection signal="area_entered" from="Node2D/Enemy" to="." method="_on_enemy_area_entered"]
+[connection signal="area_entered" from="Node2D/Diamond" to="." method="_on_diamond_area_entered"]
+[connection signal="area_entered" from="Node2D/Spring" to="." method="_on_spring_area_entered"]
+[connection signal="area_entered" from="Node2D/ladder" to="." method="_on_ladder_area_entered"]
+[connection signal="area_exited" from="Node2D/ladder" to="." method="_on_ladder_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
-[connection signal="area_entered" from="Enemy" to="." method="_on_enemy_area_entered"]

@@ -1,0 +1,214 @@
+[gd_scene load_steps=13 format=3 uid="uid://w0six6r5diu3"]
+
+[ext_resource type="Texture2D" uid="uid://l51l024mx8wl" path="res://sprites/tiles.png" id="1_6xnto"]
+[ext_resource type="PackedScene" uid="uid://cfyjmjulanoda" path="res://Scenes/Utilitys/scenes/backround_stuff.tscn" id="2_15ymu"]
+[ext_resource type="Script" path="res://Scenes/levels/level_9.gd" id="2_w6hl0"]
+[ext_resource type="PackedScene" uid="uid://c1odubp1epwy2" path="res://Scenes/Player/Player.tscn" id="3_xvwae"]
+[ext_resource type="PackedScene" uid="uid://k32qwlrjte4g" path="res://Scenes/Utilitys/scenes/door.tscn" id="4_ec6ac"]
+[ext_resource type="PackedScene" path="res://Scenes/Utilitys/scenes/coin.tscn" id="5_c4usy"]
+[ext_resource type="PackedScene" uid="uid://bq5i14qmiar6i" path="res://Scenes/Utilitys/scenes/key.tscn" id="6_lc2u1"]
+[ext_resource type="PackedScene" uid="uid://bl3wuf15ou206" path="res://Scenes/enemys/lil'_bug.tscn" id="8_h3aiv"]
+[ext_resource type="PackedScene" uid="uid://bw8qqyi3eulhj" path="res://Scenes/enemys/fish.tscn" id="9_reedq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f7tn0"]
+texture = ExtResource("1_6xnto")
+separation = Vector2i(2, 2)
+texture_region_size = Vector2i(18, 18)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+17:2/0 = 0
+18:2/0 = 0
+19:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+17:3/0 = 0
+18:3/0 = 0
+19:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+17:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+17:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+17:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+12:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+9:5/0 = 0
+9:4/0 = 0
+9:3/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+12:4/0 = 0
+5:7/0 = 0
+4:5/0 = 0
+6:0/0 = 0
+6:1/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+4:4/0 = 0
+5:5/0 = 0
+8:4/0 = 0
+7:4/0 = 0
+6:5/0 = 0
+6:4/0 = 0
+5:4/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+11:1/0 = 0
+10:1/0 = 0
+9:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+15:7/0 = 0
+14:7/0 = 0
+13:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7wnre"]
+terrain_set_0/mode = 0
+sources/5 = SubResource("TileSetAtlasSource_f7tn0")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ejws"]
+size = Vector2(18, 20)
+
+[node name="TileMap" type="TileMap"]
+texture_filter = 3
+tile_set = SubResource("TileSet_7wnre")
+format = 2
+layer_0/tile_data = PackedInt32Array(589839, 65541, 1, 589841, 196613, 1, 589840, 131077, 1, 655375, 65541, 6, 720911, 65541, 6, 786447, 65541, 6, 851983, 65541, 6, 917519, 65541, 6, 983055, 65541, 6, 1048591, 65541, 6, 1114127, 65541, 6, 1179663, 65541, 6, 655377, 196613, 6, 720913, 196613, 6, 786449, 196613, 6, 851985, 196613, 6, 917521, 196613, 6, 983057, 196613, 6, 1048593, 196613, 6, 1114129, 196613, 6, 1179665, 196613, 6, 1179664, 131077, 6, 1114128, 131077, 6, 1048592, 131077, 6, 983056, 131077, 6, 917520, 131077, 6, 851984, 131077, 6, 786448, 131077, 6, 720912, 131077, 6, 655376, 131077, 6, 524299, 196613, 0, 524297, 131077, 0, 524298, 131077, 0, 524296, 65541, 0, 458756, 196613, 1, 458755, 131077, 1, 458754, 131077, 1, 458753, 131077, 1, 458752, 131077, 1, 524292, 196613, 6, 589828, 196613, 6, 655364, 196613, 6, 720900, 196613, 6, 786436, 196613, 6, 851972, 196613, 6, 917508, 196613, 6, 983044, 196613, 6, 1179652, 196613, 6, 1114116, 196613, 6, 1048580, 196613, 6, 524288, 131077, 6, 589824, 131077, 6, 655360, 131077, 6, 720896, 131077, 6, 786432, 131077, 6, 851968, 131077, 6, 917504, 131077, 6, 983040, 131077, 6, 1048576, 131077, 6, 1114112, 131077, 6, 1179648, 131077, 6, 524289, 131077, 6, 589825, 131077, 6, 655361, 131077, 6, 720897, 131077, 6, 786433, 131077, 6, 851969, 131077, 6, 917505, 131077, 6, 983041, 131077, 6, 1048577, 131077, 6, 1114113, 131077, 6, 1179649, 131077, 6, 524290, 131077, 6, 589826, 131077, 6, 655362, 131077, 6, 720898, 131077, 6, 786434, 131077, 6, 851970, 131077, 6, 917506, 131077, 6, 983042, 131077, 6, 1048578, 131077, 6, 1114114, 131077, 6, 1179650, 131077, 6, 524291, 131077, 6, 589827, 131077, 6, 655363, 131077, 6, 720899, 131077, 6, 786435, 131077, 6, 851971, 131077, 6, 917507, 131077, 6, 983043, 131077, 6, 1048579, 131077, 6, 1114115, 131077, 6, 1179651, 131077, 6, 524293, 655365, 4, 524295, 786437, 4, 524294, 720901, 4, 458763, 262149, 6, 458762, 262149, 6, 393216, 393221, 1, 393219, 262149, 6, 524305, 262149, 6, 393217, 393221, 1, 458760, 327685, 6, 327680, 393221, 1, 458781, 131077, 1, 458782, 131077, 1, 458783, 131077, 1, 458784, 131077, 1, 458785, 131077, 1, 524316, 65541, 6, 589852, 65541, 6, 655388, 65541, 6, 720924, 65541, 6, 786460, 65541, 6, 851996, 65541, 6, 917532, 65541, 6, 983068, 65541, 6, 1048604, 65541, 6, 1114140, 65541, 6, 1179676, 65541, 6, 458780, 65541, 1, 1179677, 131077, 6, 1114141, 131077, 6, 1048606, 131077, 6, 983070, 131077, 6, 917534, 131077, 6, 851999, 131077, 6, 786463, 131077, 6, 1114142, 131077, 6, 851998, 131077, 6, 524317, 131077, 6, 589853, 131077, 6, 655389, 131077, 6, 720925, 131077, 6, 786461, 131077, 6, 851997, 131077, 6, 917533, 131077, 6, 983069, 131077, 6, 1048605, 131077, 6, 524318, 131077, 6, 589854, 131077, 6, 655390, 131077, 6, 720926, 131077, 6, 786462, 131077, 6, 1179678, 131077, 6, 524319, 131077, 6, 589855, 131077, 6, 655391, 131077, 6, 720927, 131077, 6, 917535, 131077, 6, 983071, 131077, 6, 1048607, 131077, 6, 1114143, 131077, 6, 1179679, 131077, 6, 524320, 131077, 6, 589856, 131077, 6, 655392, 131077, 6, 720928, 131077, 6, 786464, 131077, 6, 852000, 131077, 6, 917536, 131077, 6, 983072, 131077, 6, 1048608, 131077, 6, 1114144, 131077, 6, 1179680, 131077, 6, 524321, 131077, 6, 589857, 131077, 6, 655393, 131077, 6, 720929, 131077, 6, 786465, 131077, 6, 852001, 131077, 6, 917537, 131077, 6, 983073, 131077, 6, 1048609, 131077, 6, 1114145, 131077, 6, 1179681, 131077, 6, 524309, 65541, 0, 524312, 196613, 0, 524310, 131077, 0, 524311, 131077, 0, 524313, 655365, 4, 524315, 786437, 4, 524314, 720901, 4, 458776, 262149, 6, 458773, 262149, 6, 393246, 262149, 6, 393247, 393221, 1, 393248, 393221, 1, 393249, 393221, 1, 327713, 393221, 1, 262177, 393221, 1, 196641, 393221, 1, 327712, 393221, 1, 262176, 393221, 1)
+script = ExtResource("2_w6hl0")
+
+[node name="backround stuff" parent="." instance=ExtResource("2_15ymu")]
+show_behind_parent = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 109.0
+offset_top = 15.0
+offset_right = 403.0
+offset_bottom = 41.0
+text = "To finish the level, you'll need the key!"
+
+[node name="Player" parent="." instance=ExtResource("3_xvwae")]
+position = Vector2(263, 117)
+
+[node name="Door" parent="." instance=ExtResource("4_ec6ac")]
+position = Vector2(472, 103)
+
+[node name="coin" parent="." instance=ExtResource("5_c4usy")]
+position = Vector2(160, 109)
+
+[node name="coin2" parent="." instance=ExtResource("5_c4usy")]
+position = Vector2(368, 114)
+
+[node name="Key" parent="." instance=ExtResource("6_lc2u1")]
+position = Vector2(43, 89)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-1, 79, 17, 79, 17, 95, 33, 95, 33, 111, 81, 111, 80, 306, -1, 305)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(128, 127, 193, 127, 193, 145, 128, 144)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(239, 143, 239, 305, 289, 305, 289, 143)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(335, 127, 401, 127, 401, 145, 335, 145)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(447, 111, 448, 306, 545, 305, 545, 47, 527, 47, 527, 63, 511, 63, 511, 95, 495, 95, 495, 111)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(472, 102)
+shape = SubResource("RectangleShape2D_3ejws")
+
+[node name="Lil\' bug" parent="." instance=ExtResource("8_h3aiv")]
+position = Vector2(157, 115)
+
+[node name="Fish" parent="." instance=ExtResource("9_reedq")]
+position = Vector2(377, 119)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

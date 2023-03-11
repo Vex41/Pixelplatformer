@@ -1,19 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnb6b4c6ucccp"]
+[gd_scene load_steps=10 format=3 uid="uid://kjg56s1bhwk1"]
 
-[ext_resource type="Script" path="res://Scenes/levels/level1.gd" id="1_6k2aq"]
+[ext_resource type="Script" path="res://Scenes/levels/code/level1.gd" id="1_lb7w4"]
 [ext_resource type="PackedScene" uid="uid://b7djn44v11eii" path="res://Scenes/blocks/Grass blocks/left_grass_block.tscn" id="1_o6r12"]
 [ext_resource type="PackedScene" uid="uid://k8141rbyg7x" path="res://Scenes/blocks/Grass blocks/middle_grass_block.tscn" id="2_3m08n"]
-[ext_resource type="PackedScene" uid="uid://cfyjmjulanoda" path="res://Scenes/Utilitys/backround_stuff.tscn" id="2_s16ra"]
+[ext_resource type="PackedScene" uid="uid://cfyjmjulanoda" path="res://Scenes/Utilitys/scenes/backround_stuff.tscn" id="2_s16ra"]
 [ext_resource type="PackedScene" uid="uid://4i4hgftjaich" path="res://Scenes/blocks/Grass blocks/right_grass_block.tscn" id="3_xlgm7"]
-[ext_resource type="PackedScene" uid="uid://k32qwlrjte4g" path="res://Scenes/Utilitys/door.tscn" id="4_hkq8i"]
-[ext_resource type="PackedScene" uid="uid://cklf0s5xxf1gm" path="res://Scenes/Player/Player.tscn" id="5_p1s7m"]
+[ext_resource type="PackedScene" uid="uid://k32qwlrjte4g" path="res://Scenes/Utilitys/scenes/door.tscn" id="4_hkq8i"]
+[ext_resource type="PackedScene" uid="uid://c1odubp1epwy2" path="res://Scenes/Player/Player.tscn" id="5_p1s7m"]
 [ext_resource type="Texture2D" uid="uid://boaocbyl8c3r6" path="res://sprites/Tiles/tile_0124.png" id="7_ojn7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cr86w"]
 size = Vector2(20, 22)
 
 [node name="level1" type="Node2D"]
-script = ExtResource("1_6k2aq")
+script = ExtResource("1_lb7w4")
 
 [node name="backround stuff" parent="." instance=ExtResource("2_s16ra")]
 

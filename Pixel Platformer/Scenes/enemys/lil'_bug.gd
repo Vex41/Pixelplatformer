@@ -5,7 +5,9 @@ var right = false
 var left = true
 var sleep = true
 
-func _physics_process(delta):
+func _physics_process(_delta):
+	if sleep == false:
+		$Sprite2D.scale.y = 1
 	
 	
 	if !$right.is_colliding():
@@ -29,7 +31,7 @@ func _physics_process(delta):
 	move_and_collide(move)
 
 
-func _on_sleep_area_entered(area):
+func _on_sleep_area_entered(_area):
 	$Timer.start()
 	sleep = false
 

@@ -1,82 +1,85 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnwsy34a57p8v"]
+[gd_scene load_steps=13 format=3 uid="uid://daqdb0mbt2l7i"]
 
-[ext_resource type="PackedScene" uid="uid://cfyjmjulanoda" path="res://Scenes/Utilitys/backround_stuff.tscn" id="1_amdeg"]
-[ext_resource type="PackedScene" uid="uid://cklf0s5xxf1gm" path="res://Scenes/Player/Player.tscn" id="1_o2mb2"]
+[ext_resource type="PackedScene" uid="uid://cfyjmjulanoda" path="res://Scenes/Utilitys/scenes/backround_stuff.tscn" id="1_amdeg"]
+[ext_resource type="Script" path="res://Scenes/levels/code/Level2.gd" id="1_jc031"]
+[ext_resource type="PackedScene" uid="uid://c1odubp1epwy2" path="res://Scenes/Player/Player.tscn" id="1_o2mb2"]
 [ext_resource type="PackedScene" uid="uid://4i4hgftjaich" path="res://Scenes/blocks/Grass blocks/right_grass_block.tscn" id="2_dxvr5"]
 [ext_resource type="PackedScene" uid="uid://k8141rbyg7x" path="res://Scenes/blocks/Grass blocks/middle_grass_block.tscn" id="3_nrfd3"]
 [ext_resource type="PackedScene" uid="uid://b7djn44v11eii" path="res://Scenes/blocks/Grass blocks/left_grass_block.tscn" id="4_yxmlx"]
-[ext_resource type="PackedScene" uid="uid://k32qwlrjte4g" path="res://Scenes/Utilitys/door.tscn" id="5_rrnli"]
-[ext_resource type="Script" path="res://Scenes/levels/Level2.gd" id="6_5n00e"]
+[ext_resource type="PackedScene" uid="uid://k32qwlrjte4g" path="res://Scenes/Utilitys/scenes/door.tscn" id="5_rrnli"]
 [ext_resource type="Texture2D" uid="uid://c5koyt1roxnex" path="res://sprites/Tiles/tile_0128.png" id="8_6nq8b"]
 [ext_resource type="Texture2D" uid="uid://b7out8bsomni5" path="res://sprites/Tiles/tile_0125.png" id="9_dh7pn"]
 [ext_resource type="Texture2D" uid="uid://rfhcpwwad1eg" path="res://sprites/Tiles/tile_0126.png" id="10_g3wie"]
-[ext_resource type="PackedScene" uid="uid://dgd1bnfqk87nh" path="res://Scenes/Utilitys/coin.tscn" id="11_jknb1"]
+[ext_resource type="PackedScene" path="res://Scenes/Utilitys/scenes/coin.tscn" id="11_jknb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_akvxi"]
 size = Vector2(18, 21)
 
 [node name="level2" type="Node2D"]
-script = ExtResource("6_5n00e")
+script = ExtResource("1_jc031")
 
 [node name="backround stuff" parent="." instance=ExtResource("1_amdeg")]
 
-[node name="Player" parent="." instance=ExtResource("1_o2mb2")]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-90, 27)
+
+[node name="Player" parent="Node2D" instance=ExtResource("1_o2mb2")]
 position = Vector2(456, 136)
 
-[node name="RightGrassBlock" parent="." instance=ExtResource("2_dxvr5")]
+[node name="RightGrassBlock" parent="Node2D" instance=ExtResource("2_dxvr5")]
 position = Vector2(480, 160)
 
-[node name="MiddleGrassBlock" parent="." instance=ExtResource("3_nrfd3")]
+[node name="MiddleGrassBlock" parent="Node2D" instance=ExtResource("3_nrfd3")]
 position = Vector2(464, 160)
 
-[node name="LeftGrassBlock" parent="." instance=ExtResource("4_yxmlx")]
+[node name="LeftGrassBlock" parent="Node2D" instance=ExtResource("4_yxmlx")]
 position = Vector2(448, 160)
 
-[node name="RightGrassBlock2" parent="." instance=ExtResource("2_dxvr5")]
+[node name="RightGrassBlock2" parent="Node2D" instance=ExtResource("2_dxvr5")]
 position = Vector2(384, 160)
 
-[node name="MiddleGrassBlock2" parent="." instance=ExtResource("3_nrfd3")]
+[node name="MiddleGrassBlock2" parent="Node2D" instance=ExtResource("3_nrfd3")]
 position = Vector2(368, 160)
 
-[node name="LeftGrassBlock2" parent="." instance=ExtResource("4_yxmlx")]
+[node name="LeftGrassBlock2" parent="Node2D" instance=ExtResource("4_yxmlx")]
 position = Vector2(352, 160)
 
-[node name="RightGrassBlock3" parent="." instance=ExtResource("2_dxvr5")]
+[node name="RightGrassBlock3" parent="Node2D" instance=ExtResource("2_dxvr5")]
 position = Vector2(288, 160)
 
-[node name="MiddleGrassBlock3" parent="." instance=ExtResource("3_nrfd3")]
+[node name="MiddleGrassBlock3" parent="Node2D" instance=ExtResource("3_nrfd3")]
 position = Vector2(272, 160)
 
-[node name="LeftGrassBlock3" parent="." instance=ExtResource("4_yxmlx")]
+[node name="LeftGrassBlock3" parent="Node2D" instance=ExtResource("4_yxmlx")]
 position = Vector2(256, 160)
 
-[node name="Door" parent="." instance=ExtResource("5_rrnli")]
+[node name="Door" parent="Node2D" instance=ExtResource("5_rrnli")]
 position = Vector2(273, 142)
 
-[node name="Tile0128" type="Sprite2D" parent="."]
+[node name="Tile0128" type="Sprite2D" parent="Node2D"]
 texture_filter = 3
 position = Vector2(371, 142)
 texture = ExtResource("8_6nq8b")
 
-[node name="Tile0125" type="Sprite2D" parent="."]
+[node name="Tile0125" type="Sprite2D" parent="Node2D"]
 texture_filter = 3
 position = Vector2(253, 142)
 texture = ExtResource("9_dh7pn")
 
-[node name="Tile0126" type="Sprite2D" parent="."]
+[node name="Tile0126" type="Sprite2D" parent="Node2D"]
 texture_filter = 3
 position = Vector2(479, 142)
 texture = ExtResource("10_g3wie")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="Node2D"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
 position = Vector2(273, 141)
 shape = SubResource("RectangleShape2D_akvxi")
 
-[node name="coin" parent="." instance=ExtResource("11_jknb1")]
+[node name="coin" parent="Node2D" instance=ExtResource("11_jknb1")]
 position = Vector2(366, 138)
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Node2D/Area2D" to="." method="_on_area_2d_area_entered"]
