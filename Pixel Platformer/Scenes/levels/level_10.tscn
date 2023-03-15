@@ -218,3 +218,10 @@ position = Vector2(200.609, 34.448)
 
 [node name="coin3" parent="." instance=ExtResource("9_fmfcu")]
 position = Vector2(112.463, 34.448)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 350.559
+offset_top = 131.713
+offset_right = 497.559
+offset_bottom = 157.713
+text = "Thanks for playing!"

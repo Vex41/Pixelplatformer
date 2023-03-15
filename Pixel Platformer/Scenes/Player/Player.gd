@@ -80,15 +80,8 @@ func _on_timer_2_timeout():
 func _on_coin_area_entered(_area):
 	global.add_coin()
 
-func _on_diamond_area_entered(area):
+func _on_diamond_area_entered(_area):
 	global.add_diamond()
 
-func _on_spring_area_entered(area):
+func _on_spring_area_entered(_area):
 	velocity.y = SpringJump
-
-func _on_ladder_area_entered(area):
-	gravity = 0
-	print("ladder")
-
-func _on_ladder_area_exited(area):
-	gravity = 980
